@@ -1,0 +1,156 @@
+<div class="row">
+	<mvt:if expr="l.settings:subcats EQ 0">
+		<mvt:if expr="NOT ISNULL l.settings:category_title:image">
+			<p class="column whole medium-half page-title"><img src="&mvte:category_title:image;" alt="&mvte:category:name;" title="&mvte:category:name;" /></p>
+		<mvt:else>
+			<p class="column whole medium-half h3 page-title uppercase">&mvte:category:name;</p>
+		</mvt:if>
+	<mvt:else>
+		<div class="breaker"></div>
+		<p class="column whole medium-half h3 page-title uppercase">&nbsp;</p>
+	</mvt:if>
+	<div class="column whole medium-half filter-items-container">
+		<mvt:if expr="l.settings:category_listing:products_on_page_count GT 1">
+			<div class="column half medium-two-thirds medium-align-right sorting">
+				<form method="get" action="&mvte:global:sessionurl;" class="inline-labeling nbm">
+					<input type="hidden" name="Screen" value="&mvte:global:Screen;" />
+					<input type="hidden" name="Store_Code" value="&mvte:global:Store_Code;" />
+					<input type="hidden" name="Category_Code" value="&mvte:global:Category_Code;" />
+					<input type="hidden" name="Product_Code" value="&mvte:global:Product_Code;" />
+					<input type="hidden" name="Search" value="&mvte:global:Search;" /> 
+					<input type="hidden" name="Per_Page" value="&mvte:global:Per_Page;" />
+					<label for="l-sort-by">Sort By:</label>
+					<select name="Sort_By" id="l-sort-by" class="corners" onChange="this.form.submit();">
+						<mvt:if expr="ISNULL g.Sort_By">
+							<option value="disp_order" selected="selected">Default</option>
+						<mvt:else>
+							<option value="disp_order">Default</option>
+						</mvt:if>
+						<mvt:if expr="g.Sort_By EQ 'name_asc'">
+							<option value="name_asc" selected="selected">Name Ascending</option>
+						<mvt:else>
+							<option value="name_asc">Name Ascending</option>
+						</mvt:if>
+						<mvt:if expr="g.Sort_By EQ 'name_desc'">
+							<option value="name_desc" selected="selected">Name Descending</option>
+						<mvt:else>
+							<option value="name_desc">Name Descending</option>
+						</mvt:if>
+						<mvt:if expr="g.Sort_By EQ 'code_asc'">
+							<option value="code_asc" selected="selected">Code Ascending</option>
+						<mvt:else>
+							<option value="code_asc">Code Ascending</option>
+						</mvt:if>
+						<mvt:if expr="g.Sort_By EQ 'code_desc'">
+							<option value="code_desc" selected="selected">Code Descending</option>
+						<mvt:else>
+							<option value="code_desc">Code Descending</option>
+						</mvt:if>
+						<mvt:if expr="g.Sort_By EQ 'bestsellers'">
+							<option value="bestsellers" selected="selected">Best Selling</option>
+						<mvt:else>
+							<option value="bestsellers">Best Selling</option>
+						</mvt:if>
+						<mvt:if expr="g.Sort_By EQ 'price_asc'">
+							<option value="price_asc" selected="selected">Lowest Price</option>
+						<mvt:else>
+							<option value="price_asc">Lowest Price</option>
+						</mvt:if>
+						<mvt:if expr="g.Sort_By EQ 'price_desc'">
+							<option value="price_desc" selected="selected">Highest Price</option>
+						<mvt:else>
+							<option value="price_desc">Highest Price</option>
+						</mvt:if>
+						<mvt:if expr="g.Sort_By EQ 'newest'">
+							<option value="newest" selected="selected">Newest</option>
+						<mvt:else>
+							<option value="newest">Newest</option>
+						</mvt:if>
+					</select>
+					<noscript><input type="submit" value="go" title="go" /></noscript>
+				</form>
+			</div>
+		</mvt:if>
+		<mvt:if expr="l.settings:category_listing:products_on_page_count GT 1">
+			<div class="column half medium-one-third medium-align-right sorting">
+				<form method="get" action="&mvte:global:sessionurl;" class="inline-labeling nbm">
+					<input type="hidden" name="Screen" value="&mvte:global:Screen;" />
+					<input type="hidden" name="Store_Code" value="&mvte:global:Store_Code;" />
+					<input type="hidden" name="Category_Code" value="&mvte:global:Category_Code;" />
+					<input type="hidden" name="Product_Code" value="&mvte:global:Product_Code;" />
+					<input type="hidden" name="Search" value="&mvte:global:Search;" /> 
+					<input type="hidden" name="Sort_By" value="&mvte:global:Sort_By;" />
+					<label for="l-per-page">View:</label>
+					<select name="Per_Page" id="l-per-page" class="corners" onChange="this.form.submit();">
+						<mvt:if expr="g.Per_Page EQ 15">
+							<option value="15" selected="selected">15</option>
+						<mvt:else>
+							<option value="15">15</option>
+						</mvt:if>
+						<mvt:if expr="g.Per_Page EQ 30">
+							<option value="30" selected="selected">30</option>
+						<mvt:else>
+							<option value="30">30</option>
+						</mvt:if>
+						<mvt:if expr="g.Per_Page EQ 60">
+							<option value="60" selected="selected">60</option>
+						<mvt:else>
+							<option value="60">60</option>
+						</mvt:if>
+						<mvt:if expr="g.Per_Page EQ -1">
+							<option value="-1" selected="selected">All</option>
+						<mvt:else>
+							<option value="-1">All</option>
+						</mvt:if>
+					</select>
+					<noscript><input type="submit" value="go"></noscript>
+				</form>
+			</div>
+		</mvt:if>
+	</div>
+	<div class="breaker clear"></div>
+	<!-- end filter-items-container -->
+	<div id="js-product-list" class="row">
+		<mvt:foreach iterator="product" array="category_listing:products">
+			<div class="column half small-one-third category-product">
+				<a href="&mvte:product:link;" title="&mvte:product:name;">
+					<mvt:if expr="NOT ISNULL l.settings:product:imagetypes:main">
+						<img src="&mvte:product:imagetypes:main;" alt="&mvte:product:name;" title="&mvte:product:name;" />
+					<mvt:else>
+						<img src="../images/img_no_thumb.jpg" alt="&mvte:product:name;" title="&mvte:product:name;" />
+					</mvt:if>
+					<p class="semibold">&mvte:product:name;</p>
+					<mvt:if expr="l.settings:product:price GT 0">
+						<p>&mvte:product:formatted_price;</p>
+					</mvt:if>
+				</a>
+			</div>
+		</mvt:foreach>
+	</div>
+	<!-- end category-product -->
+	<mvt:if expr="l.settings:category_listing:page_links:last_page GT 1">
+		<div class="row filter-items-container bottom-pagination">
+			<mvt:if expr="l.settings:category_listing:page_links:last_page GT 1">
+				<div class="column whole align-center page-links heading-decoration">
+					<span class="page-links-container">
+						<strong class="semibold">Pages:</strong>
+						<mvt:if expr="NOT l.settings:category_listing:page_links:contains_first">
+							<a href="&mvte:category_listing:page_links:first_link;" class="page-links-inactive">1 &hellip;</a>
+						</mvt:if>
+						<mvt:foreach iterator="pages" array="category_listing:page_links:pages">
+							<mvt:if expr="l.settings:category_listing:page_links:current_page EQ l.settings:pages:page_num">
+								<a href="&mvte:pages:link;"  class="page-links-active">&mvte:pages:page_num;</a>
+							<mvt:else>
+								<a href="&mvte:pages:link;" class="page-links-inactive">&mvte:pages:page_num;</a>
+							</mvt:if>
+						</mvt:foreach>
+						<mvt:if expr="NOT l.settings:category_listing:page_links:contains_last">
+							<a href="&mvte:category_listing:page_links:last_link;" class="page-links-inactive">&hellip; &mvte:category_listing:page_links:last_page;</a>
+						</mvt:if>
+					</span>
+				</div>
+			</mvt:if>
+		</div>
+		<!-- end filter-items-container bottom-pagination -->
+	</mvt:if>
+</div>

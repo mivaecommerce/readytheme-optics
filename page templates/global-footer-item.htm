@@ -1,0 +1,100 @@
+				</div>
+				<!-- end column-right -->
+				<mvt:if expr="l.settings:page:code CIN g.screenCheck">
+				<mvt:else>
+					<div class="column-left column hide large-show large-one-fourth large-pull-three-fourths">
+						<mvt:item name="category_tree" file="" />
+					</div>
+				</mvt:if>
+				<!-- end column-left -->
+			</div>
+			<!-- end main -->
+			<div class="bottom-wrap"></div>
+			<!-- end bottom-wrap -->
+		</div>
+	</main>
+	<!-- end main -->
+</div>
+<!-- end site-wrapper -->
+<footer class="footer bg-black">
+	<div class="row wrap">
+		<div class="column one-third hide medium-show">
+			<mvt:item name="readytheme" param="image( 'footer_logo' )" />
+			<br />
+			<mvt:item name="readytheme" param="contentsection( 'footer_about_us' )" />
+		</div>
+		<div id="js-footer-links" class="hide medium-show">
+			<div class="column one-sixth">
+				<h4>Company</h4>
+				<mvt:item name="readytheme" param="navigationset( 'footer_company' )" />
+			</div>
+			<div class="column three-twelfths">
+				<h4>Navigation</h4>
+				<mvt:item name="readytheme" param="navigationset( 'footer_navigation_01' )" />
+				<mvt:item name="readytheme" param="navigationset( 'footer_navigation_02' )" />
+			</div>
+		</div>
+		<div class="column whole medium-three-twelfths footer-social">
+			<mvt:if expr="l.settings:readytheme:social_active">
+				<h4>Social Media</h4>
+				<mvt:if expr="l.settings:readytheme:social_facebook">
+					<a href="&mvt:readytheme:social_facebook;" title="Facebook" target="_blank" class="bg-facebook" data-icon="&#xe093;"></a>
+				</mvt:if>
+				<mvt:if expr="l.settings:readytheme:social_twitter">
+					<a href="&mvt:readytheme:social_twitter;" title="Twitter" target="_blank" class="bg-twitter" data-icon="&#xe094;"></a>
+				</mvt:if>
+				<mvt:if expr="l.settings:readytheme:social_instagram">
+					<a href="&mvt:readytheme:social_instagram;" title="Instagram" target="_blank" class="bg-instagram" data-icon="&#xe09a;"></a>
+				</mvt:if>
+				<mvt:if expr="l.settings:readytheme:social_googleplus">
+					<a href="&mvt:readytheme:social_googleplus;" title="Google+" target="_blank" class="bg-googleplus" data-icon="&#xe096;"></a>
+				</mvt:if>
+				<mvt:if expr="l.settings:readytheme:social_youtube">
+					<a href="&mvt:readytheme:social_youtube;" title="YouTube" target="_blank" class="bg-youtube" data-icon="&#xe0a3;"></a>
+				</mvt:if>
+				<mvt:if expr="l.settings:readytheme:social_vimeo">
+					<a href="&mvt:readytheme:social_vimeo;" title="Vimeo" target="_blank" class="bg-vimeo" data-icon="&#xe09c;"></a>
+				</mvt:if>
+				<mvt:if expr="l.settings:readytheme:social_pinterest">
+					<a href="&mvt:readytheme:social_pinterest;" title="Pinterest" target="_blank" class="bg-pinterest" data-icon="&#xe095;"></a>
+				</mvt:if>
+				<mvt:if expr="l.settings:readytheme:social_flickr">
+					<a href="&mvt:readytheme:social_flickr;" title="Flickr" target="_blank" class="bg-flickr" data-icon="&#xe0a6;"></a>
+				</mvt:if>
+			</mvt:if>
+			<div><mvt:item name="readytheme" param="trustsymbol" /></div>
+		</div>
+	</div>
+</footer>
+<!-- end footer -->
+<div class="disclaimers bg-navy">
+	<div class="row wrap">
+		<div class="column whole medium-half">&copy; Copyright <mvt:eval expr="s.tm_year" /> &mvt:global:store:company;. All Rights Reserved.</div>
+		<div class="column hide medium-show medium-half align-right"><mvt:item name="readytheme" param="image('payments_accepted')" /></div>
+	</div>
+</div>
+<!-- end disclaimers -->
+<footer class="mobile-footer row medium-all-hidden bg-black">
+	<div class="column one-fourth align-center"><a href="http://&mvt:global:domain:name;/"><span data-icon="&#xe074;"></span><small>HOME</small></a></div>
+	<div class="column one-fourth align-center toggle-slide-left"><span data-icon="&#x61;"></span><small>SHOP</small></div>
+	<div class="column one-fourth align-center"><a href="" id="js-mobile-footer-basket"><span data-icon="&#xe07a;"></span><small>CART</small></a></div>
+	<div class="column one-fourth align-center toggle-slide-bottom"><span data-icon="&#xe060;"></span><small>LINKS</small></div>
+</footer>
+<!-- end mobile-footer -->
+<nav id="js-mobile-footer-links" class="mobile-menu mobile-menu-bottom mobile-footer-links medium-hide">
+	<div class="mobile-menu-header">LINKS<a href="" class="silver close-mobile-menu">&times;</a></div>
+</nav>
+<!-- end mobile-footer-links -->
+<div id="js-chaser" class="back-to-top bg-charcoal"><span data-icon="&#x42;" title="Back to Top"></span></div>
+<!-- end back-to-top -->
+<!--[if lt IE 9]>
+	<script src="../js/vendor.ie.min.js"></script>
+<![endif]-->
+<!--[if gte IE 9]><!-->
+	<script src="../js/vendor.min.js"></script>
+<!--<![endif]-->
+<script src="../js/plugins.js"></script>
+<script src="../js/scripts.js"></script>
+<!--[if lt IE 9]>
+	<script src="../js/rem.min.js"></script>
+<![endif]-->

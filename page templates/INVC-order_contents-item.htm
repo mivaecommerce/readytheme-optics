@@ -1,0 +1,80 @@
+<div class="column whole medium-all-hidden cart-summary">
+	<span class="column whole align-right"><strong>Total: &mvt:order:formatted_total;</strong></span>
+	<br class="clear" />
+	<hr noshade />
+	<div class="basket-header-row align-center">Cart Summary</div>
+</div>
+<div class="column whole medium-three-fourths cart-contents">
+	<div class="row hide medium-show basket-header-row">
+		<div class="column five-eighths">Product</div>
+		<div class="column one-eighth align-center">Quantity</div>
+		<div class="column one-eighth align-right">Price</div>
+		<div class="column one-eighth align-right">Subtotal</div>
+	</div>
+	<mvt:foreach iterator="item" array="order:items">
+		<div class="row basket-product-row">
+			<div class="column one-fourth align-center">
+				<mvt:if expr="l.settings:item:imagetypes:main">
+					<img src="&mvte:item:imagetypes:main;" alt="&mvt:item:name;" title="&mvt:item:name;" class="" />
+				<mvt:else>
+					&nbsp;
+				</mvt:if>
+			</div>
+			<div class="column three-fourths medium-three-eighths">
+				<p>
+					<strong>&mvt:item:name;</strong>
+					<mvt:if expr="l.settings:item:upsold">
+						&nbsp;(Special Offer)
+					</mvt:if>
+					<br /><small class="gray">Code: &mvt:item:code;</small>
+				</p>
+				<mvt:foreach iterator="option" array="item:options">
+					<p>
+						<mvt:if expr="l.settings:option:option_id">
+							<small>&mvt:option:attr_prompt;: <strong>&mvt:option:opt_prompt;</strong></small>
+						<mvt:elseif expr="NOT ISNULL l.settings:option:data">
+							<small>&mvt:option:attr_prompt;: <strong>&mvt:option:data;</strong></small>
+						<mvt:elseif expr="NOT ISNULL l.settings:option:data_logn">
+							<small>&mvt:option:attr_prompt;: <strong>&mvt:option:data_logn;</strong></small>
+						<mvt:else>
+							<small>&mvt:option:attr_prompt;</small>
+						</mvt:if>
+					</p>
+				</mvt:foreach>
+			</div>
+			<div class="breaker clear medium-all-hidden"></div>
+			<div class="column offset-one-fourth one-fourth medium-offset-none medium-one-eighth"><p>&mvte:item:quantity;</p></div>
+			<div class="column hide medium-show medium-one-eighth align-right">
+				<mvt:if expr="l.settings:item:price EQ '0' OR l.settings:item:price EQ '0.00' OR l.settings:item:price EQ 0.00 OR l.settings:item:price EQ 0">
+					<p>&nbsp;</p>
+				<mvt:else>
+					<p>&mvt:item:formatted_price;</p>
+				</mvt:if>
+				<br />
+				<mvt:assign name="g.option:price_comprehensive" value="0" />
+				<mvt:foreach iterator="option" array="item:options">
+					<mvt:if expr="l.settings:option:price">
+						<mvt:assign name="g.option:price_comprehensive" value="g.option:price_comprehensive + l.settings:option:price" />
+						<p><small>&mvt:option:formatted_price;</small></p>
+					</mvt:if>
+				</mvt:foreach>
+			</div>
+			<mvt:assign name="l.settings:item:subtotal_comprehensive" value="'$' $ rnd((l.settings:item:price + g.option:price_comprehensive) * l.settings:item:quantity, 2)" />
+			<div class="column half medium-one-eighth medium-align-right">
+				<p class="medium-all-hidden"><strong>Item Subtotal</strong></p>
+				<p>&mvt:item:subtotal_comprehensive;</p>
+			</div>
+		</div>
+	</mvt:foreach>
+	<div class="breaker clear"></div>
+</div>
+<div class="column whole medium-one-fourth cart-summary">
+	<div class="all-hidden medium-all-shown basket-header-row align-center">Cart Summary</div>
+	<mvt:foreach iterator="charge" array="order:charges">
+		<span class="column whole align-right"><em>&mvt:charge:descrip;:</em> &mvt:charge:formatted_disp_amt;</span>
+	</mvt:foreach>
+	<span class="column whole align-right"><strong>Total: &mvt:order:formatted_total;</strong></span>
+	<br class="clear" />
+	<hr noshade />
+	<div class="breaker"></div>
+</div>

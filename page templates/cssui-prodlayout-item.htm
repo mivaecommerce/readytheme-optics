@@ -1,0 +1,81 @@
+<div class="row product-information">
+	<div class="column whole medium-five-twelfths product-information--images">
+		<span data-icon="&#x55;" id="js-main-image-zoom" class="main-image" data-index="0"><img src="graphics/en-US/cssui/blank.gif" alt="&mvte:product:name;" title="&mvte:product:name;" id="js-main-image" data-image="&mvt:product:customfield_values:productimagecustomfields:main;" /></span>
+		<div class="row thumbnail-wrapper">
+			<div id="js-thumbnails" class="column whole no-padding thumbnails"></div>
+		</div>
+		<mvt:item name="product_display_imagemachine" param="body:product:id" />
+	</div>
+	<!-- end product-information--images -->
+	<div class="column whole medium-half medium-offset-one-twelfth product-information--purchase">
+		<div id="js-processing-purchase" class="processing-purchase"><img src="../images/img_ajax_processing.gif" alt="Processing..." title="Processing..." /></div>
+		<div id="js-purchase-message" class="message message-warning purchase-message"></div>
+		<div class="row">
+			<h1 class="column whole uppercase nm">&mvte:product:name;</h1>
+			<p class="column whole gray nm">Code: &mvte:product:code;</p>
+		</div>
+		<hr noshade />
+		<div class="row">
+			<div class="column whole price-value">
+				<mvt:if expr="l.settings:product:retail GT l.settings:product:price">
+					<span id="js-additonal-price" class="strike">&mvt:product:formatted_retail;</span><span id="js-price-value" class="red semibold" data-base-price="&mvt:product:price;">&mvt:product:formatted_price;</span>
+				<mvt:elseif expr="l.settings:product:price GT 0">
+					<span id="js-price-value" data-base-price="&mvt:product:price;">&mvt:product:formatted_price;</span>
+				<mvt:else>
+					<span id="js-price-value" class="all-hidden" data-base-price="&mvt:product:price;"></span>
+				</mvt:if>
+			</div>
+		</div>
+		<hr noshade />
+		<div class="row">
+			<div class="column whole product-information--description">
+				<p class="semibold nm">Product Details</p>
+				<div class="small">&mvt:product:descrip;</div>
+			</div>
+		</div>
+		<!-- end product-information--description -->
+		<hr noshade />
+		<form method="post" action="&mvte:global:sessionurl;Screen=BASK" id="js-purchase-product" class="inline-labeling">
+			<input type="hidden" name="Old_Screen" value="&mvte:global:Screen;" />
+			<input type="hidden" name="Old_Search" value="&mvte:global:Search;" />
+			<input type="hidden" name="Action" value="ADPR" />
+			<input type="hidden" name="Store_Code" value="&mvte:store:code;" />
+			<input type="hidden" name="Product_Code" value="&mvte:product:code;" />
+			<input type="hidden" name="Category_Code" value="&mvte:global:category_code;" />
+			<input type="hidden" name="Offset" value="&mvte:global:Offset;" />
+			<input type="hidden" name="AllOffset" value="&mvte:global:AllOffset;" />
+			<input type="hidden" name="CatListingOffset" value="&mvte:global:CatListingOffset;" />
+			<input type="hidden" name="RelatedOffset" value="&mvte:global:RelatedOffset;" />
+			<input type="hidden" name="SearchOffset" value="&mvte:global:SearchOffset;" />
+			<div class="row">
+				<mvt:if expr="l.settings:product:inv_active OR l.settings:attributemachine:product:inv_active">
+					<p id="js-inventory-message" class="column whole">&mvt:product:inv_long;</p>
+				</mvt:if>
+				<div id="js-product-attributes" class="column whole product-attributes">
+					<mvt:item name="product_attributes" param="product:id" file="PROD-product_attributes-item.htm" />
+				</div>
+				<div class="column whole product-swatches">
+					<div id="js-swatches"></div>
+				</div>
+			</div>
+			<div class="row corners add-to-cart-wrap">
+				<div class="column whole medium-two-fifths">
+					<div class="row quantity-wrap align-center">
+						<div class="column one-fourth nrp"><span id="js-decrease-quantity" class="decrease-quantity" unselectable="on">-</span></div>
+						<div class="column three-eighths np"><input type="tel" name="Quantity" value="1" id="l-quantity" class="align-center" /></div>
+						<div class="column one-fourth nlp"><span id="js-increase-quantity" class="increase-quantity" unselectable="on">+</span></div>
+					</div>
+				</div>
+				<div class="column whole medium-three-fifths">
+					<div class="breaker medium-all-hidden"></div>
+					<input type="submit" value="Add to Cart" id="js-add-to-cart" class="button button-medium uppercase add-to-cart bg-aqua" />
+				</div>
+			</div>
+		</form>
+		<div class="row">
+			<div class="column whole"><mvt:item name="readytheme" param="thirdpartysharing" /></div>
+		</div>
+	</div>
+	<!-- end product-information--purchase -->
+</div>
+<!-- end product-information -->

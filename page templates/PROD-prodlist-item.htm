@@ -1,0 +1,22 @@
+<div class="breaker"></div>
+<div class="breaker"></div>
+<div id="js-product-list" class="row">
+	<div class="column whole align-center h4 uppercase heading-decoration"><span>Related Products</span></div>
+	<div class="breaker clear"></div>
+	<mvt:foreach iterator="product" array="related_products:products">
+		<div class="column half small-one-third medium-one-fourth category-product">
+			<a href="&mvte:product:link;" title="&mvte:product:name;">
+				<mvt:if expr="NOT ISNULL l.settings:product:imagetypes:main">
+					<img src="&mvte:product:imagetypes:main;" alt="&mvte:product:name;" title="&mvte:product:name;" />
+				<mvt:else>
+					<img src="../images/img_no_thumb.jpg" alt="&mvte:product:name;" title="&mvte:product:name;" />
+				</mvt:if>
+				<p class="semibold">&mvte:product:name;</p>
+				<mvt:if expr="l.settings:product:price GT 0">
+					<p>&mvt:product:formatted_retail;</p>
+				</mvt:if>
+			</a>
+		</div>
+	</mvt:foreach>
+</div>
+<!-- end related-products -->
