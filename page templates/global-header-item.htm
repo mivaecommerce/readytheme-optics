@@ -40,7 +40,7 @@
 					<li class="global-search">
 						<form action="&mvt:global:protocol_relative_url;Screen=SRCH" method="post">
 							<input type="hidden" name="Store_Code" value="&mvte:store:code;" />
-							<input type="search" name="Search" value="&mvte:global:Search;" placeholder="Search&hellip;" class="nb bg-navy white hide" />
+							<input type="search" name="Search" value="&mvte:global:Search;" placeholder="Search&hellip;" class="nb bg-gray navy hide" />
 							<button type="submit" id="js-open-global-search" class="button nb bg-transparent"><span data-icon="&#x55;"></span></button>
 						</form>
 					</li>
@@ -50,7 +50,14 @@
 		</div>
 		<!-- end pre-header -->
 		<div class="row wrap main-header">
-			<a href="http://&mvt:global:domain:name;/" title="&mvt:global:store:name;" class="column whole medium-two-fifths large-one-fifth x-large-one-third masthead align-center x-large-align-left"><img src="&mvte:readytheme:logo_image;" alt="&mvt:readytheme:logo_alt;" title="&mvt:readytheme:logo_alt;" /></a>
+			<a href="http://&mvt:global:domain:name;/" title="&mvt:global:store:name;" class="column whole medium-two-fifths large-one-fifth x-large-one-third masthead align-center x-large-align-left">
+				<mvt:if expr="l.settings:readytheme:logo_type EQ 'text'">
+					<span class="h1 show uppercase masthead--name">&mvt:readytheme:logo_name;</span>
+					<span class="h3 show italic nm masthead--tagline">&mvt:readytheme:logo_tagline;</span>
+				<mvt:elseif expr="l.settings:readytheme:logo_type EQ 'image'">
+					<img src="&mvte:readytheme:logo_image;" alt="&mvt:readytheme:logo_alt;" title="&mvt:readytheme:logo_alt;" />
+				</mvt:if>
+			</a>
 			<div class="column hide medium-show medium-three-fifths large-four-fifths x-large-two-thirds np">
 				<mvt:item name="navbar" file="cssui-navbar-item.htm" />
 				<!-- end navigation-bar -->

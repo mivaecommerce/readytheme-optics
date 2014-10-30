@@ -11,6 +11,24 @@
 	<mvt:item name="tax" />
 	<div class="row">
 		<div class="column whole medium-two-thirds cart-contents">
+			<form method="post" action="&mvte:global:secure_sessionurl;Screen=BASK">
+				<div class="row">
+					<input type="hidden" name="Action" value="ACPN" />
+					<input type="hidden" name="Store_Code" value="&mvte:global:Store_Code;" />
+					<div class="column whole">
+						<p class="h4 fields-heading uppercase">Redeem Your Coupons</p>
+					</div>
+					<div class="column one-fourth medium-one-tenth">
+						<label for="l-coupon-code">Coupon:</label>
+					</div>
+					<div class="column half medium-one-fourth np">
+						<input type="text" name="Coupon_Code" id="l-coupon-code" class="input-small-font" />
+					</div>
+					<div class="column one-fourth medium-one-eighth np">
+						<input type="submit" value="Redeem" class="button button-small-font button-square align-top nb" />
+					</div>
+				</div>
+			</form>
 			<form method="post" action="&mvt:global:secure_sessionurl;" id="js-osel-form">
 				<input type="hidden" name="Screen" value="OPAY" />
 				<input type="hidden" name="Action" value="SHIP,PSHP,CTAX" />

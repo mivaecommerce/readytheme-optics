@@ -18,24 +18,24 @@
 		<div class="column one-eighth align-right">Price</div>
 		<div class="column one-eighth align-right">Subtotal</div>
 	</div>
-	<mvt:foreach iterator="item" array="basket:items">
+	<mvt:foreach iterator="group" array="basket:groups">
 		<div class="row basket-product-row">
 			<div class="column one-fourth align-center">
-				<mvt:if expr="l.settings:item:imagetypes:main">
-					<img src="&mvte:item:imagetypes:main;" alt="&mvt:item:name;" title="&mvt:item:name;" class="" />
+				<mvt:if expr="l.settings:group:imagetypes:main">
+					<img src="&mvte:group:imagetypes:main;" alt="&mvt:group:name;" title="&mvt:group:name;" class="" />
 				<mvt:else>
 					&nbsp;
 				</mvt:if>
 			</div>
 			<div class="column three-fourths medium-three-eighths">
 				<p>
-					<a href="&mvt:global:sessionurl;Screen=PROD&amp;Store_Code=&mvta:global:Store_Code;&amp;Product_Code=&mvta:item:code;" title="&mvt:item:name;" rel="nofollow">&mvt:item:name;</a>
-					<mvt:if expr="l.settings:item:upsold">
+					<a href="&mvt:global:sessionurl;Screen=PROD&amp;Store_Code=&mvta:global:Store_Code;&amp;Product_Code=&mvta:group:code;" title="&mvt:group:name;" rel="nofollow">&mvt:group:name;</a>
+					<mvt:if expr="l.settings:group:upsold">
 						&nbsp;(Special Offer)
 					</mvt:if>
-					<br /><small class="gray">Code: &mvt:item:code;</small>
+					<br /><small class="gray">Code: &mvt:group:code;</small>
 				</p>
-				<mvt:foreach iterator="option" array="item:options">
+				<mvt:foreach iterator="option" array="group:options">
 					<p>
 						<mvt:if expr="l.settings:option:option_id">
 							<small>&mvt:option:attr_prompt;: <strong>&mvt:option:opt_prompt;</strong></small>
@@ -48,29 +48,39 @@
 						</mvt:if>
 					</p>
 				</mvt:foreach>
+				<mvt:foreach iterator="discount" array="group:discounts">
+					<mvt:if expr="l.settings:discount:display">
+						<p>&mvt:discount:descrip;: &mvt:discount:formatted_discount;</p>
+					</mvt:if>
+				</mvt:foreach>
+				<mvt:foreach iterator="discount" array="option:discounts">
+					<mvt:if expr="l.settings:discount:display">
+						<p>&mvt:discount:descrip;: &mvt:discount:formatted_discount;</p>
+					</mvt:if>
+				</mvt:foreach>
 			</div>
 			<div class="breaker clear medium-all-hidden"></div>
 			<div class="column offset-one-fourth one-fourth medium-offset-none medium-one-eighth">
-				<mvt:if expr="l.settings:item:upsold">
-					<p class="align-center">&mvt:item:quantity;</p>
+				<mvt:if expr="l.settings:group:upsold">
+					<p class="align-center">&mvt:group:quantity;</p>
 				<mvt:else>
 					<form method="post" action="&mvt:global:sessionurl;Screen=BASK" class="nm">
-						<input type="hidden" name="Action" value="QNTY" />
+						<input type="hidden" name="Action" value="QTYG" />
 						<input type="hidden" name="Store_Code" value="&mvte:global:Store_Code;" />
-						<input type="hidden" name="Basket_Line" value="&mvte:item:line_id;" />
+						<input type="hidden" name="Basket_Group" value="&mvte:group:group_id;" />
 						<input type="hidden" name="Old_Screen" value="BASK" />
 						<input type="hidden" name="Offset" value="&mvte:global:Offset;" />
 						<input type="hidden" name="AllOffset" value="&mvte:global:AllOffset;" />
 						<input type="hidden" name="CatListingOffset" value="&mvte:global:CatListingOffset;" />
 						<input type="hidden" name="RelatedOffset" value="&mvte:global:RelatedOffset;" />
 						<input type="hidden" name="SearchOffset" value="&mvte:global:SearchOffset;" />
-						<input type="tel" name="Quantity" value="&mvt:item:quantity;" class="align-center" />
+						<input type="tel" name="Quantity" value="&mvt:group:quantity;" class="align-center" />
 						<button type="submit" class="button button-mini button-block button-square"><span data-icon="&#xe02a;" class="hide medium-inline"></span>Update</button>
 					</form>
 					<form method="post" action="&mvt:global:sessionurl;Screen=BASK" class="nm">
-						<input type="hidden" name="Action" value="RPRD" />
+						<input type="hidden" name="Action" value="RGRP" />
 						<input type="hidden" name="Store_Code" value="&mvte:global:Store_Code;" />
-						<input type="hidden" name="Basket_Line" value="&mvte:item:line_id;" />
+						<input type="hidden" name="Basket_Group" value="&mvte:group:group_id;" />
 						<input type="hidden" name="Offset" value="&mvte:global:Offset;" />
 						<input type="hidden" name="AllOffset" value="&mvte:global:AllOffset;" />
 						<input type="hidden" name="CatListingOffset" value="&mvte:global:CatListingOffset;" />
@@ -81,27 +91,65 @@
 				</mvt:if>
 			</div>
 			<div class="column hide medium-show medium-one-eighth align-right">
-				<mvt:if expr="l.settings:item:price EQ '0' OR l.settings:item:price EQ '0.00' OR l.settings:item:price EQ 0.00 OR l.settings:item:price EQ 0">
+				<mvt:if expr="l.settings:group:price EQ '0' OR l.settings:group:price EQ '0.00' OR l.settings:group:price EQ 0.00 OR l.settings:group:price EQ 0">
 					<p>&nbsp;</p>
 				<mvt:else>
-					<p>&mvt:item:formatted_price;</p>
+					<p>&mvt:group:formatted_base_price;</p>
 				</mvt:if>
 				<br />
-				<mvt:assign name="g.option:price_comprehensive" value="0" />
-				<mvt:foreach iterator="option" array="item:options">
-					<mvt:if expr="l.settings:option:price">
-						<mvt:assign name="g.option:price_comprehensive" value="g.option:price_comprehensive + l.settings:option:price" />
-						<p><small>&mvt:option:formatted_price;</small></p>
+				<mvt:foreach iterator="option" array="group:options">
+					<mvt:if expr="l.settings:option:base_price">
+						<p><small>&mvt:option:formatted_base_price;</small></p>
 					</mvt:if>
 				</mvt:foreach>
 			</div>
-			<mvt:assign name="l.settings:item:subtotal_comprehensive" value="'$' $ rnd((l.settings:item:price + g.option:price_comprehensive) * l.settings:item:quantity, 2)" />
 			<div class="column half medium-one-eighth medium-align-right">
 				<p class="medium-all-hidden"><strong>Item Subtotal</strong></p>
-				<p>&mvt:item:subtotal_comprehensive;</p>
+				<mvt:if expr="l.settings:group:subtotal_base_price NE l.settings:group:subtotal">
+					<s>&mvt:group:formatted_subtotal_base_price;</s><br />
+				</mvt:if>
+				<p>&mvt:group:formatted_subtotal;</p>
+				<mvt:if expr="l.settings:option:subtotal_base_price OR l.settings:option:subtotal">
+					<mvt:if expr="l.settings:option:subtotal_base_price NE l.settings:option:subtotal">
+						<s><small>&mvt:option:formatted_subtotal_base_price;<small></s><br />
+					</mvt:if>
+					<p><small>&mvt:option:formatted_subtotal;<small></p>
+				</mvt:if>
 			</div>
 		</div>
 	</mvt:foreach>
+	<mvt:foreach iterator="coupon" array="basket:coupons">
+		<div class="row basket-product-row">
+			<div class="column whole">
+				<form method="post" action="&mvte:global:sessionurl;Screen=BASK" class="nm">
+					<input type="hidden" name="Action" value="RCPN" />
+					<input type="hidden" name="Store_Code" value="&mvte:global:Store_Code;" />
+					<input type="hidden" name="Coupon_Code" value="&mvte:coupon:code;" />
+					<mvt:if expr="NOT ISNULL l.settings:coupon:descrip">
+						Coupon - &mvt:coupon:code;: &mvt:coupon:descrip;
+					<mvt:else>
+						Coupon - &mvt:coupon:code;
+					</mvt:if>
+					<button type="submit" class="button button-mini bg-transparent red align-baseline">Remove</button>
+				</form>
+			</div>
+		</div>
+	</mvt:foreach>
+	<div class="row basket-button-row">
+		<form method="post" action="&mvte:global:sessionurl;Screen=BASK" class="nm">
+			<input type="hidden" name="Action" value="ACPN" />
+			<input type="hidden" name="Store_Code" value="&mvte:global:Store_Code;" />
+			<div class="column one-fourth medium-one-tenth">
+				<label for="l-coupon-code">Coupon:</label>
+			</div>
+			<div class="column half medium-one-fourth np">
+				<input type="text" name="Coupon_Code" id="l-coupon-code" class="input-small-font" />
+			</div>
+			<div class="column one-fourth medium-one-eighth np">
+				<input type="submit" value="Redeem" class="button button-small-font button-square align-top nb" />
+			</div>
+		</form>
+	</div>
 	<div class="row basket-button-row">
 		<div class="column whole medium-three-fourths">
 			<a href="http://&mvt:global:domain:name;/" title="Continue Shopping" class="button button-medium button-small-font bg-transparent blue uppercase">Continue Shopping</a>

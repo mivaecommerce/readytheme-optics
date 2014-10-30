@@ -135,7 +135,7 @@
 																		<td bgcolor="#000000" class="th" style="color:#ffffff; font-family:Verdana; font-size:12px; line-height:16px; text-align:left; font-weight:bold; padding:5px 12px 5px 12px">Quantity</td>
 																		<td bgcolor="#000000" class="th" style="color:#ffffff; font-family:Verdana; font-size:12px; line-height:16px; text-align:left; font-weight:bold; padding:5px 12px 5px 12px">Total</td>
 																	</tr>
-																	<mvt:foreach iterator="item" array="order:items">
+																	<mvt:foreach iterator="item" array="order:groups">
 																		<tr>
 																			<td class="td" style="padding:12px; border-bottom:1px solid #dddddd" valign="top">
 																				<div class="td-text" style="color:#252831; font-family:Verdana; font-size:11px; line-height:15px; text-align:left; padding:8px 0; border:0">&mvt:item:code;</div>
@@ -165,13 +165,49 @@
 																										&mvt:option:attr_prompt;<br />
 																									</mvt:if>
 																								</mvt:foreach>
+																								<mvt:foreach iterator="discount" array="item:discounts">
+																									<mvt:if expr="l.settings:discount:display">
+																										&mvt:discount:descrip;: &mvt:discount:formatted_discount;<br />
+																									</mvt:if>
+																								</mvt:foreach>
+																								<mvt:foreach iterator="discount" array="option:discounts">
+																									<mvt:if expr="l.settings:discount:display">
+																										&mvt:discount:descrip;: &mvt:discount:formatted_discount;<br />
+																									</mvt:if>
+																								</mvt:foreach>
 																							</div>
 																						</td>
 																					</tr>
 																				</table>
 																			</td>
 																			<td valign="top" class="td" style="padding:12px; border-bottom:1px solid #dddddd"><div class="td-text-center" style="color:#252831; font-family:Verdana; font-size:11px; line-height:15px; text-align:center; padding:8px 0; border:0">&mvt:item:quantity;</div></td>
-																			<td valign="top" class="td" style="padding:12px; border-bottom:1px solid #dddddd"><div class="td-text" style="color:#252831; font-family:Verdana; font-size:11px; line-height:15px; text-align:left; padding:8px 0; border:0">&mvt:item:formatted_subtotal;</div></td>
+																			<td valign="top" class="td" style="padding:12px; border-bottom:1px solid #dddddd">
+																				<div class="td-text" style="color:#252831; font-family:Verdana; font-size:11px; line-height:15px; text-align:left; padding:8px 0; border:0">
+																					<mvt:if expr="l.settings:item:subtotal_base_price NE l.settings:item:subtotal">
+																						<s>&mvt:item:formatted_subtotal_base_price;</s><br />
+																					</mvt:if>
+																					&mvt:item:formatted_subtotal;<br />
+																					<mvt:if expr="l.settings:option:subtotal_base_price OR l.settings:option:subtotal">
+																						<mvt:if expr="l.settings:option:subtotal_base_price NE l.settings:option:subtotal">
+																							<s><small>&mvt:option:formatted_subtotal_base_price;<small></s><br />
+																						</mvt:if>
+																						<small>&mvt:option:formatted_subtotal;<small><br />
+																					</mvt:if>
+																				</div>
+																			</td>
+																		</tr>
+																	</mvt:foreach>
+																	<mvt:foreach iterator="coupon" array="order:coupons">
+																		<tr>
+																			<td colspan="4" class="td" style="padding:12px; border-bottom:1px solid #dddddd" valign="top">
+																				<div class="td-text" style="color:#252831; font-family:Verdana; font-size:11px; line-height:15px; text-align:left; padding:8px 0; border:0">
+																					<mvt:if expr="NOT ISNULL l.settings:coupon:descrip">
+																						Coupon - &mvt:coupon:code;: &mvt:coupon:descrip;
+																					<mvt:else>
+																						Coupon - &mvt:coupon:code;
+																					</mvt:if>
+																				</div>
+																			</td>
 																		</tr>
 																	</mvt:foreach>
 																</table>
