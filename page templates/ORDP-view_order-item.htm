@@ -5,7 +5,7 @@
 		<div class="column one-eighth align-right">Price</div>
 		<div class="column one-eighth align-right">Subtotal</div>
 	</div>
-	<mvt:foreach iterator="item" array="order:items">
+	<mvt:foreach iterator="item" array="order:groups">
 		<div class="row basket-product-row">
 			<div class="column one-fourth align-center">
 				<mvt:if expr="ISNULL l.settings:item:imagetypes:main">
@@ -37,7 +37,12 @@
 				</mvt:foreach>
 				<mvt:foreach iterator="discount" array="item:discounts">
 					<mvt:if expr="l.settings:discount:display">
-						<p class="order-discount">&mvt:discount:descrip;: &mvt:discount:formatted_discount;</p>
+						<p>&mvt:discount:descrip;: &mvt:discount:formatted_discount;</p>
+					</mvt:if>
+				</mvt:foreach>
+				<mvt:foreach iterator="discount" array="option:discounts">
+					<mvt:if expr="l.settings:discount:display">
+						<p>&mvt:discount:descrip;: &mvt:discount:formatted_discount;</p>
 					</mvt:if>
 				</mvt:foreach>
 			</div>
@@ -46,20 +51,27 @@
 				<mvt:if expr="l.settings:item:price EQ '0' OR l.settings:item:price EQ '0.00' OR l.settings:item:price EQ 0.00 OR l.settings:item:price EQ 0">
 					<p>&nbsp;</p>
 				<mvt:else>
-					<p>&mvt:item:formatted_price;</p>
+					<p>&mvt:item:formatted_base_price;</p>
 				</mvt:if>
 				<br />
-				<mvt:assign name="g.option:price_comprehensive" value="0" />
 				<mvt:foreach iterator="option" array="item:options">
-					<mvt:if expr="l.settings:option:price">
-						<mvt:assign name="g.option:price_comprehensive" value="g.option:price_comprehensive + l.settings:option:price" />
-						<p><small>&mvt:option:formatted_price;</small></p>
+					<mvt:if expr="l.settings:option:base_price">
+						<p><small>&mvt:option:formatted_base_price;</small></p>
 					</mvt:if>
 				</mvt:foreach>
 			</div>
-			<mvt:assign name="l.settings:item:subtotal_comprehensive" value="'$' $ rnd((l.settings:item:price + g.option:price_comprehensive) * l.settings:item:quantity, 2)" />
 			<div class="column one-eighth align-right">
-				<p>&mvt:item:subtotal_comprehensive;</p>
+				<p class="medium-all-hidden"><strong>Item Subtotal</strong></p>
+				<mvt:if expr="l.settings:item:subtotal_base_price NE l.settings:item:subtotal">
+					<s>&mvt:item:formatted_subtotal_base_price;</s><br />
+				</mvt:if>
+				<p>&mvt:item:formatted_subtotal;</p>
+				<mvt:if expr="l.settings:option:subtotal_base_price OR l.settings:option:subtotal">
+					<mvt:if expr="l.settings:option:subtotal_base_price NE l.settings:option:subtotal">
+						<s><small>&mvt:option:formatted_subtotal_base_price;</small></s><br />
+					</mvt:if>
+					<p><small>&mvt:option:formatted_subtotal;</small></p>
+				</mvt:if>
 			</div>
 			<mvt:if expr="l.settings:item:order_status">
 				<br class="clear" />
@@ -67,10 +79,21 @@
 			</mvt:if>
 		</div>
 	</mvt:foreach>
+	<mvt:foreach iterator="coupon" array="order:coupons">
+		<div class="basket-product-row clear">
+			<div class="column whole">
+				<mvt:if expr="NOT ISNULL l.settings:coupon:descrip">
+					Coupon - &mvt:coupon:code;: &mvt:coupon:descrip;
+				<mvt:else>
+					Coupon - &mvt:coupon:code;
+				</mvt:if>
+			</div>
+		</div>
+	</mvt:foreach>
+	<div class="breaker clear"></div>
 </div>
-<div class="column whole cart-summary">
-	<div class="row">
-		<div class="breaker"></div>
+<div class="column whole medium-one-fourth cart-summary">
+	<div class="all-hidden medium-all-shown basket-header-row align-center">Cart Summary</div>
 		<mvt:foreach iterator="charge" array="order:charges">
 			<div class="column seven-eighths align-right"><em>&mvt:charge:descrip;:</em></div>
 			<div class="column one-eighth align-right">&mvt:charge:formatted_disp_amt;</div>

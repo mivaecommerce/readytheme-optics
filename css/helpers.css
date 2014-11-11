@@ -177,24 +177,15 @@
 		}
 
 	/* ------------------------ positioning (floating) ------------------------ */
-	.clear {
-		clear: both;
-	}
-	.clear-height {
-		height: auto !important;
-		line-height: normal !important;
-	}
-	.float-left {
-		float: left;
-	}
-	.float-none {
-		float: none;
-	}
-	.float-right {
-		float: right;
-	}
 		/* ------------------------ x-small breakpoint ------------------------ */
 		@media only screen and (min-width: 480px) {
+			.x-small-clear {
+				clear: both;
+			}
+			.x-small-clear-height {
+				height: auto !important;
+				line-height: normal !important;
+			}
 			.x-small-float-left {
 				float: left;
 			}
@@ -207,6 +198,13 @@
 		}
 		/* ------------------------ small breakpoint ------------------------ */
 		@media only screen and (min-width: 640px) {
+			.small-clear {
+				clear: both;
+			}
+			.small-clear-height {
+				height: auto !important;
+				line-height: normal !important;
+			}
 			.small-float-left {
 				float: left;
 			}
@@ -219,6 +217,13 @@
 		}
 		/* ------------------------ medium breakpoint ------------------------ */
 		@media only screen and (min-width: 768px) {
+			.medium-clear {
+				clear: both;
+			}
+			.medium-clear-height {
+				height: auto !important;
+				line-height: normal !important;
+			}
 			.medium-float-left {
 				float: left;
 			}
@@ -231,6 +236,13 @@
 		}
 		/* ------------------------ large breakpoint ------------------------ */
 		@media only screen and (min-width: 960px) {
+			.large-clear {
+				clear: both;
+			}
+			.large-clear-height {
+				height: auto !important;
+				line-height: normal !important;
+			}
 			.large-float-left {
 				float: left;
 			}
@@ -243,6 +255,13 @@
 		}
 		/* ------------------------ x-large breakpoint ------------------------ */
 		@media only screen and (min-width: 1170px) {
+			.x-large-clear {
+				clear: both;
+			}
+			.x-large-clear-height {
+				height: auto !important;
+				line-height: normal !important;
+			}
 			.x-large-float-left {
 				float: left;
 			}

@@ -187,10 +187,45 @@ var cornerstoneUX = {
 		},
 		
 		// ---- Conform all subcategory and/or product DIVs to same height ---- // 
-		conformDisplay: function () {
-			$('.category-product').conformity({mode: 'height'});
+		conformDisplay: function (targetElement) {
+			var targetElement = targetElement || '.category-product';
+			
+			$(window).on('load', function () {
+				$(targetElement).conformity({mode: 'height'});
+			});
 			$(window).on('resize', function () {
-				$('.sub-category').conformity();
+				$(targetElement).conformity({mode: 'height'});
+			});
+		},
+
+		// ---- Open Product Image Gallery ---- //
+		productGallery: function (trigger) {
+			trigger.on('click', function (e) {
+				var startAt = $(this).attr('data-index');
+				
+				e.preventDefault();
+				if (gallery.length > 0) {
+					$.magnificPopup.open({
+						callbacks: {
+							open: function () {
+								//$.magnificPopup.instance.goTo(startAt);
+							}
+						},
+						gallery: {
+							enabled: true
+						},
+						items: gallery,
+						type: 'image'
+					});
+				}
+				else {
+					$.magnificPopup.open({
+						items: {
+							src: $('#js-main-image').attr('data-image')
+						},
+						type: 'image'
+					});
+				};
 			});
 		}
 		
@@ -208,26 +243,16 @@ var cornerstoneUX = {
 	},
 	
 	jsPROD: function () {
-		// ---- Open Gallery On Main Image Click ---- //
-		if (gallery.length > 0) {
-			$('#js-main-image, #js-main-image-zoom').magnificPopup({
-				gallery: {
-					enabled: true
-				},
-				image: {
-					cursor: ''
-				},
-				items: gallery,
-				type: 'image'
-			});
-		}
-		else {
-			$('#js-main-image, #js-main-image-zoom').magnificPopup({
-				items: {
-					src: $('#js-main-image').attr('src')
-				},
-				type: 'image'
-			});
+		// ---- Open Product Image Gallery ---- //
+		cornerstoneUX.sharedFunctions.productGallery($('#js-main-image-zoom'));
+		
+		var thumbnails = document.getElementById('js-thumbnails');
+		for (var i = 0; i < thumbnails.children.length; i++) {
+			(function (index) {
+				thumbnails.children[i].onclick = function () {
+					document.getElementById('js-main-image-zoom').setAttribute('data-index', index);
+				}
+			})(i);
 		};
 		
 		// ---- Update Button For "Out Of Stock" ---- //
@@ -246,6 +271,7 @@ var cornerstoneUX = {
 		// ---- Update Display When Attribute Machine Fires ---- //
 		MivaEvents.SubscribeToEvent('variant_changed', function () {
 			outOfStock ();
+			gallery.length = 0;
 		});
 	
 		// ---- Update Display Price Based on Attribute Selections (If Attribute Machine Is Not Being Used) ---- //
@@ -280,9 +306,8 @@ var cornerstoneUX = {
 					// Set up variables
 					var form = purchaseForm,
 						formData = form.serialize(),
-						formUrl = form.attr('action'),
-						randomNo = Math.ceil(Math.random() * 1000000), // IE6/7 Hack: Creating random number to refresh ajax call
-						miniBasketURL = form.attr('action').slice(0, -4) + 'ABSK&v=' + randomNo,
+						randomNo = Math.ceil(Math.random() * 1000000), // IE Hack: Creating random number to refresh ajax call
+						formUrl = form.attr('action') + '&v=' + randomNo,
 						formMethod = form.attr('method'),
 						responseMessage = $('#js-purchase-message'),
 						miniBasket = $('#js-mini-basket-container'),
@@ -306,8 +331,8 @@ var cornerstoneUX = {
 							if (data.search(/id="js-BASK"/i) != -1) {
 								$('html, body').animate({scrollTop: '0px'}, 250);
 								var responseMiniBasket = $(data).find('#js-mini-basket-container'),
-									miniBasketCount = responseMiniBasket.contents()[1].dataset.itemcount,
-									miniBasketSubtotal = ' ' + responseMiniBasket.contents()[1].dataset.subtotal,
+									miniBasketCount = responseMiniBasket.contents()[1].getAttribute('data-itemcount'),
+									miniBasketSubtotal = ' ' + responseMiniBasket.contents()[1].getAttribute('data-subtotal'),
 									miniBasketLinkCount = $('#js-mini-basket-count, #js-mobile-basket-count, #js-mobile-footer-basket-count, #js-mobile-menu-basket-count'),
 									miniBasketLinkSubtotal = $('#js-mini-basket-subtotal');
 								
@@ -409,6 +434,7 @@ var cornerstoneUX = {
 						formMethod = form.attr('method')
 					
 					form.data('formstatus', 'submitting');
+					$('#js-processing-request').show();
 					$.ajax({
 						url: formUrl,
 						type: formMethod,
@@ -420,6 +446,7 @@ var cornerstoneUX = {
 							});
 							resetFields ();
 							form.data('formstatus', 'idle');
+							$('#js-processing-request').hide();
 						},
 						error: function (jqXHR, textStatus, errorThrown) {
 							console.log(errorThrown);
@@ -610,11 +637,10 @@ var cornerstoneUX = {
 		// ---- Launch Printer Dialog ---- //
 		window.print();
 	},
+	
 	jsSMAP: function () {
-		$('.site-map').conformity({mode: 'height'});
-		$(window).on('resize', function () {
-			$('.site-map').conformity();
-		});
+		// ---- Conform all site map DIVs to same height ---- //
+		cornerstoneUX.sharedFunctions.conformDisplay('.site-map');
 	}
 };
 cornerstoneUX.init();

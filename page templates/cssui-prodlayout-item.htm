@@ -17,10 +17,10 @@
 		<hr noshade />
 		<div class="row">
 			<div class="column whole price-value">
-				<mvt:if expr="l.settings:product:retail GT l.settings:product:price">
-					<span id="js-additonal-price" class="strike">&mvt:product:formatted_retail;</span><span id="js-price-value" class="red semibold" data-base-price="&mvt:product:price;">&mvt:product:formatted_price;</span>
+				<mvt:if expr="l.settings:product:retail GT l.settings:product:base_price">
+					<span id="js-additonal-price" class="strike">&mvt:product:formatted_retail;</span><span id="js-price-value" class="red semibold" data-base-price="&mvt:product:price;">&mvt:product:formatted_base_price;</span>
 				<mvt:elseif expr="l.settings:product:price GT 0">
-					<span id="js-price-value" data-base-price="&mvt:product:price;">&mvt:product:formatted_price;</span>
+					<span id="js-price-value" data-base-price="&mvt:product:price;">&mvt:product:formatted_base_price;</span>
 				<mvt:else>
 					<span id="js-price-value" class="all-hidden" data-base-price="&mvt:product:price;"></span>
 				</mvt:if>
