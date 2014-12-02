@@ -7,5 +7,6 @@ Bugs Fixed
 	- Fixed misnamed meta tags in head tag
 	- PROD Display, fixed image overlap issue
 	- Fixed Contact form where php form was not included in framework
+	-
 
 	
