@@ -353,7 +353,7 @@ textarea {
 	}
 		@media (min-width: 960px) {
 			.inline-labeling {
-				font-size: 0.875rem;
+				font-size: 0.75rem;
 			}
 				.inline-labeling label {
 					display: inline-block;

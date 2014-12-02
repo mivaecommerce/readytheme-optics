@@ -177,15 +177,24 @@
 		}
 
 	/* ------------------------ positioning (floating) ------------------------ */
+	.clear {
+		clear: both;
+	}
+	.clear-height {
+		height: auto !important;
+		line-height: normal !important;
+	}
+	.float-left {
+		float: left;
+	}
+	.float-none {
+		float: none;
+	}
+	.float-right {
+		float: right;
+	}
 		/* ------------------------ x-small breakpoint ------------------------ */
 		@media only screen and (min-width: 480px) {
-			.x-small-clear {
-				clear: both;
-			}
-			.x-small-clear-height {
-				height: auto !important;
-				line-height: normal !important;
-			}
 			.x-small-float-left {
 				float: left;
 			}
@@ -198,13 +207,6 @@
 		}
 		/* ------------------------ small breakpoint ------------------------ */
 		@media only screen and (min-width: 640px) {
-			.small-clear {
-				clear: both;
-			}
-			.small-clear-height {
-				height: auto !important;
-				line-height: normal !important;
-			}
 			.small-float-left {
 				float: left;
 			}
@@ -217,13 +219,6 @@
 		}
 		/* ------------------------ medium breakpoint ------------------------ */
 		@media only screen and (min-width: 768px) {
-			.medium-clear {
-				clear: both;
-			}
-			.medium-clear-height {
-				height: auto !important;
-				line-height: normal !important;
-			}
 			.medium-float-left {
 				float: left;
 			}
@@ -236,13 +231,6 @@
 		}
 		/* ------------------------ large breakpoint ------------------------ */
 		@media only screen and (min-width: 960px) {
-			.large-clear {
-				clear: both;
-			}
-			.large-clear-height {
-				height: auto !important;
-				line-height: normal !important;
-			}
 			.large-float-left {
 				float: left;
 			}
@@ -255,13 +243,6 @@
 		}
 		/* ------------------------ x-large breakpoint ------------------------ */
 		@media only screen and (min-width: 1170px) {
-			.x-large-clear {
-				clear: both;
-			}
-			.x-large-clear-height {
-				height: auto !important;
-				line-height: normal !important;
-			}
 			.x-large-float-left {
 				float: left;
 			}
@@ -872,7 +853,7 @@
 		color: #fff;
 		font-size: 0.75rem;
 		font-weight: 700;
-		line-height: 1rem;
+		line-height: 1;
 		padding: 0.25rem 0.375rem;
 		vertical-align: baseline;
 		white-space: nowrap;
@@ -885,7 +866,7 @@
 		color: #fff;
 		font-size: 0.625rem;
 		font-weight: 700;
-		line-height: 1rem;
+		line-height: 1;
 		padding: 0.25rem 0.5rem;
 		text-align: center;
 		white-space: nowrap;
@@ -1044,13 +1025,17 @@
 	width: 100%;
 	height: 1px;
 }
-.heading-decoration span {
+.heading-decoration span,
+.heading-decoration .readytheme-banner {
 	background: #fff;
+	display: inline;
 	padding: 0 0.75rem;
 	position: relative;
 }
 	.heading-decoration span:after,
-	.heading-decoration span:before {
+	.heading-decoration span:before,
+	.heading-decoration .readytheme-banner:after,
+	.heading-decoration .readytheme-banner:before {
 		background: #fff;
 		content: '';
 		display: inline-block;
@@ -1058,11 +1043,13 @@
 		width: 1rem;
 		height: 100%;
 	}
-	.heading-decoration span:after {
+	.heading-decoration span:after,
+	.heading-decoration .readytheme-banner:after {
 		right: -1rem;
 		border-left: 1px solid #ddd;
 	}
-	.heading-decoration span:before {
+	.heading-decoration span:before,
+	.heading-decoration .readytheme-banner:before {
 		left: -1rem;
 		border-right: 1px solid #ddd;
 	}

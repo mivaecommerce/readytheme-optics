@@ -154,9 +154,6 @@ body {
 				.global-search.open form {
 					width: 21rem;
 				}
-				.global-search input[type="search"],
-				.global-search button {
-				}
 				.global-search input[type="search"] {
 					float: left;
 					opacity: 0;
@@ -174,23 +171,28 @@ body {
 					height: 2em;
 				}
 					.global-search input[type="search"]:-moz-placeholder {
-						color: #262d36;
+						color: #fff;
 					}
 					.global-search input[type="search"]::-moz-placeholder {
-						color: #262d36;
+						color: #fff;
 					}
 					.global-search input[type="search"]:-ms-input-placeholder {
-						color: #262d36;
+						color: #fff;
 						line-height: 1;
 					}
 					.global-search input[type="search"]::-webkit-input-placeholder {
-						color: #262d36;
+						color: #fff;
 					}
 				.global-search button {
 					float: right;
 					width: 2.50rem;
 				}
-					.global-search button *[data-icon] {
+					.global-search button:active,
+					.global-search.open button,
+					.global-search button:hover {
+						background: #2bdfc0;
+					}
+					.global-search button *[data-rt-icon] {
 						margin: 0;
 						vertical-align: middle;
 					}
@@ -204,7 +206,7 @@ body {
 			-webkit-transition: all 0.2s ease-in-out;
 			transition: all 0.2s ease-in-out;
 		}
-			.mini-basket *[data-icon] {
+			.mini-basket *[data-rt-icon] {
 				font-size: 1.25rem;
 				line-height: normal;
 				margin-right: 0.25rem;
@@ -598,7 +600,8 @@ body {
 				.mobile-navigation-search input[type="search"] {
 					border-color: transparent;
 				}
-				.mobile-navigation-search .button *[data-icon] {
+				.mobile-navigation-search .button *[data-icon],
+				.mobile-navigation-search .button *[data-rt-icon] {
 					margin: 0;
 				}
 			.mobile-navigation {

@@ -10,36 +10,34 @@
 	</div>
 	<div class="row">
 		<div class="column whole">
-			<mvt:if expr="ISNULL g.Error_Messages">
+			<mvt:if expr="l.settings:messages:error_message_count EQ 0">
 				<p class="message message-warning">The item you requested is not available at this time.</p>
 			<mvt:else>
-				<mvt:if expr="g.Error_Message_Count">
-					<mvt:foreach iterator="message" array="global:error_messages">
-						<mvt:if expr="'page' CIN l.settings:message">
-							<p class="message message-warning">We're sorry but it appears that the "&mvte:global:Screen;" page is not available at this time.</p>
-							<p>Please <mvt:item name="cssui_links" param="screen:SFNT">click here</mvt:item> to return to our home page.</p>
-						<mvt:elseif expr="'category' CIN l.settings:message">
-							<p class="message message-warning">We're sorry but it appears that the "&mvte:global:Category_Code;" category is not available at this time.</p>
-							<p>Please <mvt:item name="cssui_links" param="screen:SFNT">click here</mvt:item> to return to our home page.</p>
-						<mvt:elseif expr="'product' CIN l.settings:message">
-							<p class="message message-warning">We're sorry but it appears that product "&mvte:global:Product_Code;" is not available at this time.</p>
-							<p>Please perform a Search to find a similar product.</p>
-							<form method="post" action="&mvt:global:sessionurl;Screen=SRCH" class="whole medium-one-third">
-								<input type="hidden" name="Store_Code" value="&mvte:store:code;" />
-								<div class="form-row">
-									<label for="l-ntfd-search">Search For:</label>
-									<input type="search" name="Search" value="&mvte:global:Product_Code;" id="l-ntfd-search" />
-								</div>
-								<div class="form-row align-right">
-									<mvt:item name="buttons" param="Search" file="cssui-buttonSearch-item.htm" />
-								</div>
-							</form>
-							<br class="clear" />
-						<mvt:else>
-							<p class="message message-warning">&mvte:message;</p>
-						</mvt:if>
-					</mvt:foreach>
-				</mvt:if>
+				<mvt:foreach iterator="message" array="messages:error_messages">
+					<mvt:if expr="'page' CIN l.settings:message">
+						<p class="message message-warning">We're sorry but it appears that the "&mvte:global:Screen;" page is not available at this time.</p>
+						<p>Please <mvt:item name="cssui_links" param="screen:SFNT">click here</mvt:item> to return to our home page.</p>
+					<mvt:elseif expr="'category' CIN l.settings:message">
+						<p class="message message-warning">We're sorry but it appears that the "&mvte:global:Category_Code;" category is not available at this time.</p>
+						<p>Please <mvt:item name="cssui_links" param="screen:SFNT">click here</mvt:item> to return to our home page.</p>
+					<mvt:elseif expr="'product' CIN l.settings:message">
+						<p class="message message-warning">We're sorry but it appears that product "&mvte:global:Product_Code;" is not available at this time.</p>
+						<p>Please perform a Search to find a similar product.</p>
+						<form method="post" action="&mvt:global:sessionurl;Screen=SRCH" class="whole medium-one-third">
+							<input type="hidden" name="Store_Code" value="&mvte:store:code;" />
+							<div class="form-row">
+								<label for="l-ntfd-search">Search For:</label>
+								<input type="search" name="Search" value="&mvte:global:Product_Code;" id="l-ntfd-search" />
+							</div>
+							<div class="form-row align-right">
+								<mvt:item name="buttons" param="Search" file="cssui-buttonSearch-item.htm" />
+							</div>
+						</form>
+						<br class="clear" />
+					<mvt:else>
+						<p class="message message-warning">&mvte:message;</p>
+					</mvt:if>
+				</mvt:foreach>
 			</mvt:if>
 		</div>
 	</div>

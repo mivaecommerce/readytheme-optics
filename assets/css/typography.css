@@ -431,6 +431,9 @@ var {
 .lowercase {
 	text-transform: lowercase;
 }
+.normalcase {
+	text-transform: none;
+}
 .uppercase {
 	text-transform: uppercase;
 }

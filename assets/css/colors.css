@@ -74,8 +74,8 @@
 		background-color: #00b3d3;
 	}
 	.button.bg-aqua:hover {
-		background-color: #41ccb4;
-		color: #333;
+		background-color: #1ce9c6;
+		color: #fff;
 	}
 	.button.bg-teal:hover {
 		background-color: #33b8b8;
@@ -241,6 +241,9 @@
 }
 .white {
 	color: #fff;
+}
+.charcoal {
+	color: #7f7f7f;
 }
 .gray {
 	color: #aaa;
