@@ -11,14 +11,14 @@
 	}
 	
 	/* Check all form inputs for possible XSS using strip_tags function. */
-	$contactName = strip_tags($_POST['contactName']);
-	$contactEmail = strip_tags($_POST['contactEmail']);
+	$contactName = clean(strip_tags($_POST['contactName']));
+	$contactEmail = clean(strip_tags($_POST['contactEmail']));
 	$contactComment = strip_tags($_POST['contactComment']);
-	
+
 	/* Add the store and current time information. */
-	$storeName = strip_tags($_POST['storeName']);
+	$storeName = clean(strip_tags($_POST['storeName']));
 	$storeEmail = base64_decode($_POST['storeEmail']);
-	$storeEmail = strip_tags($storeEmail);
+	$storeEmail = clean(strip_tags($storeEmail));
 	date_default_timezone_set('UTC');
 	$now = time();
 	
@@ -69,6 +69,12 @@
 			echo 'Error: We\'re sorry, there was a problem processing your request.';
 		}
 	}
+	
+	function clean($string){
+		$string = str_replace(array( "\r", "\n", "%0a", "%0d"), '', stripslashes($string));
+		return $string;
+	}
+	
 	exit;
 ?>
 

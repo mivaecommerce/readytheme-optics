@@ -1,0 +1,21 @@
+/* the humans responsible & colophon */
+/* humanstxt.org */
+
+/* TEAM */
+	Developed and Maintained By: Miva, Inc.
+	Site: http://www.miva.com/professional-services
+	Twitter: @Miva_Merchant
+	Location: San Diego, CA USA
+
+/* SITE */
+	Name: Miva Responsive Framework
+	URL: http://optics-theme.mivamerchantdev.com/
+	Last Update: 02/25/2015
+	Doctype: HTML5
+	Components: CSS3, HTML5, Modernizr, jQuery, cornerstoneUX
+	Software: Miva Merchant
+	Language: English
+
+/* THANKS */
+	Developer: Matt Zimmermann
+	Twitter: @mivamatt
