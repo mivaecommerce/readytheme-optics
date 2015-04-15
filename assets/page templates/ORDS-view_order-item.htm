@@ -29,11 +29,11 @@
 				<mvt:foreach iterator="option" array="item:options">
 					<p>
 						<mvt:if expr="l.settings:option:option_id">
-							<small>&mvt:option:attr_prompt;: <strong>&mvt:option:opt_prompt;</strong></small>
+							<small>&mvt:option:attr_prompt; <strong>&mvt:option:opt_prompt;</strong></small>
 						<mvt:elseif expr="NOT ISNULL l.settings:option:data">
-							<small>&mvt:option:attr_prompt;: <strong>&mvt:option:data;</strong></small>
+							<small>&mvt:option:attr_prompt; <strong>&mvt:option:data;</strong></small>
 						<mvt:elseif expr="NOT ISNULL l.settings:option:data_logn">
-							<small>&mvt:option:attr_prompt;: <strong>&mvt:option:data_logn;</strong></small>
+							<small>&mvt:option:attr_prompt; <strong>&mvt:option:data_logn;</strong></small>
 						<mvt:else>
 							<small>&mvt:option:attr_prompt;</small>
 						</mvt:if>
@@ -103,6 +103,17 @@
 		<span class="column whole align-right"><em>&mvt:charge:descrip;:</em> &mvt:charge:formatted_disp_amt;</span>
 	</mvt:foreach>
 	<span class="column whole align-right"><strong>Total: &mvt:order:formatted_total;</strong></span>
+	<br class="clear" />
+	<hr noshade />
+	<mvt:foreach iterator="payment" array="order:payments">
+		<p class="column whole">
+			<mvt:if expr="l.settings:payment:type EQ 6">
+				<em>Refund: &mvt:payment:desc;: &mvt:payment:formatted_amount;</em>
+			<mvt:else>
+				<em>Payment: &mvt:payment:desc;: &mvt:payment:formatted_amount_negative;</em>
+			</mvt:if>
+		</p>
+	</mvt:foreach>
 	<br class="clear" />
 	<hr noshade />
 	<div class="breaker"></div>

@@ -1,12 +1,12 @@
-<mvt:item name="html_profile" file="cssui-html-profile-item.htm" />
+<mvt:item name="html_profile"  file="cssui-html-profile-item.htm" />
 <head>
 <title>&mvt:store:name;: &mvt:page:name;</title>
-<mvt:item name="head" param="head_tag" file="cssui-global-head-item.htm" />
+<mvt:item name="head" param="head_tag"  file="cssui-global-head-item.htm" />
 </head>
 <mvt:item name="body" file="body-item.htm">
-	<mvt:item name="hdft" param="global_header" file="global-header-item.htm" />	
+	<mvt:item name="hdft" param="global_header"  file="global-header-item.htm" />	
 	<div class="row hdft-header">
-		<mvt:item name="hdft" param="header" file="OCST-header-item.htm" />
+		<mvt:item name="hdft" param="header"  file="OCST-header-item.htm" />
 	</div>
 	<div class="row">
 		<div class="column whole medium-two-thirds cart-contents">
@@ -23,7 +23,7 @@
 				</mvt:if>
 				<input type="hidden" name="Store_Code" value="&mvte:store:code;" />
 				<div class="row customer-fields">
-					<mvt:item name="customer" file="OCST-custflds-item.htm" />
+					<mvt:item name="customer"  file="OCST-custflds-item.htm" />
 				</div>
 				<mvt:if expr="NOT g.Basket:cust_id">
 					<div class="row">
@@ -40,7 +40,7 @@
 				</mvt:if>
 				<div class="row">
 					<div class="column whole align-right">
-						<mvt:item name="buttons" param="Continue" file="cssui-buttonContinue-item.htm" />
+						<mvt:item name="buttons" param="Continue"  file="cssui-buttonContinue-item.htm" />
 					</div>
 				</div>
 			</form>
@@ -48,13 +48,13 @@
 		<div class="column whole medium-one-third cart-summary">
 			<div id="js-toggle-cart-summary-contents" class="basket-header-row align-center">Cart Summary <span>&#9660;</span></div>
 			<div id="js-cart-summary-contents">
-				<mvt:item name="basket" file="OCST-basket-item.htm" />
+				<mvt:item name="basket"  file="OCST-basket-item.htm" />
 			</div>
 		</div>
 	</div>
 	<div class="row hdft-footer">
-		<mvt:item name="hdft" param="footer" file="OCST-footer-item.htm" />
+		<mvt:item name="hdft" param="footer"  file="OCST-footer-item.htm" />
 	</div>
-	<mvt:item name="hdft" param="global_footer" file="global-footer-item.htm" />
+	<mvt:item name="hdft" param="global_footer"  file="global-footer-item.htm" />
 </mvt:item>
 </html>

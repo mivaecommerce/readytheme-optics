@@ -605,6 +605,7 @@
 }
 	.acln .account-links .column {
 		margin-bottom: 1rem;
+		min-height: 9rem;
 	}
 		.acln .account-links a {
 			text-decoration: none;

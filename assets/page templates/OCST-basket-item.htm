@@ -63,4 +63,12 @@
 	</mvt:foreach>
 	<div class="column three-fourths align-right basket-total">Total:</div>
 	<div class="column one-fourth align-right basket-total nrp nlp">&mvt:basket:formatted_total;</div>
+	<mvt:foreach iterator="split" array="splitpayment:splits">
+		<p class="column three-fourths align-right"><em>Pending Payment: &mvt:split:desc;:</em></p>
+		<p class="column one-fourth align-right nrp">&mvt:split:formatted_amount_negative;</p>
+	</mvt:foreach>
+	<mvt:if expr="( NOT ISNULL l.settings:splitpayment:remaining ) AND ( l.settings:splitpayment:remaining NE l.settings:basket:total )">
+		<div class="column three-fourths align-right basket-total">Total Remaining:</div>
+		<div class="column one-fourth align-right basket-total nrp nlp">&mvt:splitpayment:formatted_remaining;</div>
+	</mvt:if>
 </div>

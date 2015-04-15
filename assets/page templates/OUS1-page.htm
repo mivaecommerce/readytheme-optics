@@ -1,13 +1,13 @@
-<mvt:item name="html_profile" file="cssui-html-profile-item.htm" />
+<mvt:item name="html_profile"  file="cssui-html-profile-item.htm" />
 <head>
 <title>&mvt:store:name;: Checkout: &mvt:page:name;</title>
-<mvt:item name="head" param="head_tag" file="cssui-global-head-item.htm" />
+<mvt:item name="head" param="head_tag"  file="cssui-global-head-item.htm" />
 </head>
 <mvt:item name="body" file="body-item.htm">
-	<mvt:item name="hdft" param="global_header" file="global-header-item.htm" />	
+	<mvt:item name="hdft" param="global_header"  file="global-header-item.htm" />	
 	<div class="row hdft-header">
 		<h2 class="align-center">Save &mvt:upsale:formatted_upsell_savings;<small class="show">Offer valid for this order only</small></h2>
-		<mvt:item name="hdft" param="header" file="OUS1-header-item.htm" />
+		<mvt:item name="hdft" param="header"  file="OUS1-header-item.htm" />
 	</div>
 	<div class="row product-information">
 		<form method="post" action="&mvt:global:secure_sessionurl;Screen=OSEL">
@@ -36,7 +36,7 @@
 				<hr noshade />
 				<div class="row">
 					<div id="js-product-attributes" class="column whole product-attributes">
-						<mvt:item name="product_attributes" param="upsale:id" file="OUS1-product_attributes-item.htm" />
+						<mvt:item name="product_attributes" param="upsale:id"  file="OUS1-product_attributes-item.htm" />
 					</div>
 				</div>
 				<hr noshade />
@@ -47,18 +47,18 @@
 				&mvt:upsale:descrip;
 			</div>
 			<!-- end product-information--description -->
-			<p class="column whole align-right"><mvt:item name="buttons" param="AddToOrder" file="cssui-buttonAddToOrder-item.htm" /></p>
+			<p class="column whole align-right"><mvt:item name="buttons" param="AddToOrder"  file="cssui-buttonAddToOrder-item.htm" /></p>
 		</form>
 		<div class="breaker"></div>
 		<form method="post" action="&mvt:global:secure_sessionurl;Screen=OSEL">
 			<input type="hidden" name="Store_Code" value="&mvte:store:code;" />
 			<mvt:item name="tax" />
-			<p class="column whole align-right"><mvt:item name="buttons" param="DoNotAddToOrder" file="cssui-buttonDoNotAddToOrder-item.htm" /></p>
+			<p class="column whole align-right"><mvt:item name="buttons" param="DoNotAddToOrder"  file="cssui-buttonDoNotAddToOrder-item.htm" /></p>
 		</form>
 	</div>
 	<div class="row hdft-footer">
-		<mvt:item name="hdft" param="footer" file="OUS1-footer-item.htm" />
+		<mvt:item name="hdft" param="footer"  file="OUS1-footer-item.htm" />
 	</div>
-	<mvt:item name="hdft" param="global_footer" file="global-footer-item.htm" />	
+	<mvt:item name="hdft" param="global_footer"  file="global-footer-item.htm" />	
 </mvt:item>
 </html>

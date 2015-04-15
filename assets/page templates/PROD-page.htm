@@ -1,23 +1,23 @@
-<mvt:item name="html_profile" file="cssui-html-profile-item.htm" />
+<mvt:item name="html_profile"  file="cssui-html-profile-item.htm" />
 <head>
 <mvt:if expr="NOT ISNULL l.settings:product:metafield:title">
 	<title>&mvt:product:metafield:title;</title>         
 <mvt:else>
 	<title>&mvt:product:name;: &mvt:store:name;</title>
 </mvt:if>
-<mvt:item name="head" param="head_tag" file="cssui-global-head-item.htm" />
+<mvt:item name="head" param="head_tag"  file="cssui-global-head-item.htm" />
 <mvt:item name="attributemachine" param="head" />
 <mvt:item name="product_display_imagemachine" param="head" />
 </head>
 <mvt:item name="body" file="body-item.htm">
-	<mvt:item name="hdft" param="global_header" file="global-header-item.htm" />	
+	<mvt:item name="hdft" param="global_header"  file="global-header-item.htm" />	
 	<div class="row hdft-header">
-		<mvt:item name="hdft" param="header" file="PROD-header-item.htm" />
+		<mvt:item name="hdft" param="header"  file="PROD-header-item.htm" />
 	</div>
 	<div class="row prod-ctgy-hdft-header">
 		<mvt:item name="prod_ctgy_hdft" param="prod_header" />
 	</div>
-	<mvt:item name="product_display" file="cssui-prodlayout-item.htm" />
+	<mvt:item name="product_display"  file="cssui-prodlayout-item.htm" />
 	<mvt:item name="attributemachine" param="body" />
 	<script>
 		if (typeof am&mvt:product:id; !== 'undefined') {
@@ -25,13 +25,13 @@
 		};
 	</script>
 	<mvt:if expr="l.settings:related_product_count NE 0">
-		<mvt:item name="related_products" file="PROD-prodlist-item.htm" />
+		<mvt:item name="related_products"  file="PROD-prodlist-item.htm" />
 	</mvt:if>
 	<div class="row prod-ctgy-hdft-footer">
 		<mvt:item name="prod_ctgy_hdft" param="prod_footer" />
 	</div>
 	<div class="row hdft-footer">
-		<mvt:item name="hdft" param="footer" file="PROD-footer-item.htm" />
+		<mvt:item name="hdft" param="footer"  file="PROD-footer-item.htm" />
 	</div>
 	<!-- Google Rich Snippets -->
 	<div itemscope itemtype="http://data-vocabulary.org/Product">
@@ -53,6 +53,6 @@
 			</mvt:if>
 		</div>
 	</div>
-	<mvt:item name="hdft" param="global_footer" file="global-footer-item.htm" />	
+	<mvt:item name="hdft" param="global_footer"  file="global-footer-item.htm" />	
 </mvt:item>
 </html>

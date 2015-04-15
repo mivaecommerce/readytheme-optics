@@ -646,6 +646,11 @@ var cornerstoneUX = {
 	jsSMAP: function () {
 		// ---- Conform all site map DIVs to same height ---- //
 		cornerstoneUX.sharedFunctions.conformDisplay('.site-map');
+	},
+	
+	jsGFTL: function () {
+		// ---- Open Forgot Password ---- //
+		cornerstoneUX.sharedFunctions.openForgotPassword();
 	}
 };
 cornerstoneUX.init();
