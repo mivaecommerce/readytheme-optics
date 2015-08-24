@@ -2,15 +2,13 @@
 	<div class="column whole filter-items-container">
 		<mvt:if expr="l.settings:all_products:products_on_page_count GT 1">
 			<div class="column half medium-two-thirds medium-align-right sorting">
-				<form method="get" action="&mvte:global:sessionurl;" class="inline-labeling nbm">
-					<input type="hidden" name="Screen" value="&mvte:global:Screen;" />
-					<input type="hidden" name="Store_Code" value="&mvte:global:Store_Code;" />
+				<form method="get" action="&mvte:urls:_self:auto;" class="inline-labeling nbm">
 					<input type="hidden" name="Category_Code" value="&mvte:global:Category_Code;" />
 					<input type="hidden" name="Product_Code" value="&mvte:global:Product_Code;" />
 					<input type="hidden" name="Search" value="&mvte:global:Search;" /> 
 					<input type="hidden" name="Per_Page" value="&mvte:global:Per_Page;" />
 					<label for="l-sort-by">Sort By:</label>
-					<select name="Sort_By" id="l-sort-by" class="corners" onChange="this.form.submit();">
+					<select name="Sort_By" id="l-sort-by" class="corners" onchange="this.form.submit();">
 						<mvt:if expr="ISNULL g.Sort_By">
 							<option value="disp_order" selected="selected">Default</option>
 						<mvt:else>
@@ -63,15 +61,13 @@
 		</mvt:if>
 		<mvt:if expr="l.settings:all_products:products_on_page_count GT 1">
 			<div class="column half medium-one-third medium-align-right sorting">
-				<form method="get" action="&mvte:global:sessionurl;" class="inline-labeling nbm">
-					<input type="hidden" name="Screen" value="&mvte:global:Screen;" />
-					<input type="hidden" name="Store_Code" value="&mvte:global:Store_Code;" />
+				<form method="get" action="&mvte:urls:_self:auto;" class="inline-labeling nbm">
 					<input type="hidden" name="Category_Code" value="&mvte:global:Category_Code;" />
 					<input type="hidden" name="Product_Code" value="&mvte:global:Product_Code;" />
 					<input type="hidden" name="Search" value="&mvte:global:Search;" /> 
 					<input type="hidden" name="Sort_By" value="&mvte:global:Sort_By;" />
 					<label for="l-per-page">View:</label>
-					<select name="Per_Page" id="l-per-page" class="corners" onChange="this.form.submit();">
+					<select name="Per_Page" id="l-per-page" class="corners" onchange="this.form.submit();">
 						<mvt:if expr="g.Per_Page EQ 15">
 							<option value="15" selected="selected">15</option>
 						<mvt:else>
@@ -125,17 +121,17 @@
 					<span class="page-links-container">
 						<strong class="semibold">Pages:</strong>
 						<mvt:if expr="NOT l.settings:all_products:page_links:contains_first">
-							<a href="&mvte:all_products:page_links:first_link;" class="page-links-inactive">1 &hellip;</a>
+							<a href="&mvte:urls:_self:auto_sep;&mvte:all_products:page_links:first_link_params;" class="page-links-inactive">1 &hellip;</a>
 						</mvt:if>
 						<mvt:foreach iterator="pages" array="all_products:page_links:pages">
 							<mvt:if expr="l.settings:all_products:page_links:current_page EQ l.settings:pages:page_num">
-								<a href="&mvte:pages:link;"  class="page-links-active">&mvte:pages:page_num;</a>
+								<a href="&mvte:urls:_self:auto_sep;&mvte:pages:link_params;"  class="page-links-active">&mvte:pages:page_num;</a>
 							<mvt:else>
-								<a href="&mvte:pages:link;" class="page-links-inactive">&mvte:pages:page_num;</a>
+								<a href="&mvte:urls:_self:auto_sep;&mvte:pages:link_params;" class="page-links-inactive">&mvte:pages:page_num;</a>
 							</mvt:if>
 						</mvt:foreach>
 						<mvt:if expr="NOT l.settings:all_products:page_links:contains_last">
-							<a href="&mvte:all_products:page_links:last_link;" class="page-links-inactive">&hellip; &mvte:all_products:page_links:last_page;</a>
+							<a href="&mvte:urls:_self:auto_sep;&mvte:all_products:page_links:last_link_params;" class="page-links-inactive">&hellip; &mvte:all_products:page_links:last_page;</a>
 						</mvt:if>
 					</span>
 				</div>

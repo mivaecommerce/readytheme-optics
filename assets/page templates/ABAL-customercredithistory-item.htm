@@ -7,9 +7,7 @@
 <mvt:if expr="l.settings:customercredithistory:total_count GT 1">
 	<div class="row filter-items-container">
 		<div class="column half medium-two-thirds medium-align-right sorting">
-			<form method="get" action="&mvte:global:sessionurl;" class="inline-labeling nbm">
-				<input type="hidden" name="Screen" value="&mvte:global:Screen;" />
-				<input type="hidden" name="Store_Code" value="&mvte:global:Store_Code;" />
+			<form method="get" action="&mvte:urls:_self:auto;" class="inline-labeling nbm">
 				<input type="hidden" name="Per_Page" value="&mvte:global:Per_Page;" />
 				<label for="l-sort-by">Sort By</label>
 				<select name="Sort_By" id="l-sort-by" class="corners" onchange="this.form.submit();">
@@ -54,9 +52,7 @@
 			<!-- end sorting -->
 		</div>
 		<div class="column half medium-one-third medium-align-right sorting">
-			<form method="get" action="&mvte:global:sessionurl;" class="inline-labeling nbm">
-				<input type="hidden" name="Screen" value="&mvte:global:Screen;" />
-				<input type="hidden" name="Store_Code" value="&mvte:global:Store_Code;" />
+			<form method="get" action="&mvte:urls:_self:auto;" class="inline-labeling nbm">
 				<input type="hidden" name="Sort_By" value="&mvte:global:Sort_By;" />
 				<label for="l-per-page">View</label>
 				<select name="Per_Page" id="l-per-page" class="corners" onchange="this.form.submit();">
@@ -84,7 +80,7 @@
 				<noscript><input type="submit" value="go" title="go" /></noscript>
 			</form>
 			<!-- end per-page -->
-		</nav>
+		</div>
 	</div>
 </mvt:if>
 <!-- end filter-items-container -->
@@ -122,9 +118,7 @@
 			<mvt:if expr="g.Offset EQ 0">
 				<div class="column half">&nbsp;</div>
 			<mvt:else>
-				<form method="post" action="&mvt:global:secure_sessionurl;"  class="column half">
-					<input type="hidden" name="Screen" value="&mvte:global:Screen;" />
-					<input type="hidden" name="Store_Code" value="&mvte:global:Store_Code;" />
+				<form method="post" action="&mvte:urls:_self:auto;"  class="column half">
 					<input type="hidden" name="SortBy" value="&mvte:global:SortBy;" />
 					<input type="hidden" name="Offset" value="&mvte:global:PrevOffset;" />
 					<mvt:item name="buttons" param="Previous"  file="cssui-buttonPrevious-item.htm" />
@@ -133,9 +127,7 @@
 			<mvt:if expr="g.NextOffset EQ 0">
 				<div class="column half">&nbsp;</div>
 			<mvt:else>
-				<form method="post" action="&mvt:global:secure_sessionurl;" class="column half align-right">
-					<input type="hidden" name="Screen" value="&mvte:global:Screen;" />
-					<input type="hidden" name="Store_Code" value="&mvte:global:Store_Code;" />
+				<form method="post" action="&mvte:urls:_self:auto;" class="column half align-right">
 					<input type="hidden" name="SortBy" value="&mvte:global:SortBy;" />
 					<input type="hidden" name="Offset" value="&mvte:global:NextOffset;" />
 					<mvt:item name="buttons" param="Next"  file="cssui-buttonNext-item.htm" />

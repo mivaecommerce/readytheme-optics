@@ -2,59 +2,26 @@
 <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<mvt:assign name="g.screenCheck" value="'ABAL,ACAD,ACED,AFAD,AFCL,AFED,ACLN,BASK,CEML,CPWD,FPWD,GFTL,INVC,LOGN,LOGOUT,OCST,OPAY,OPRC,ORHL,ORDH,ORDL,ORDS,OSEL,OUS1,OUSL,OUSM,PLMT,PRINTP,RGFT,SFNT,UATM,UATR'" />
-<mvt:assign name="g.storeEmailB64" value="crypto_base64_encode(g.store:email)" />
-<mvt:assign name="g.protocol_relative_url" value="substring_var(g.sessionurl, 6, len_var(g.sessionurl))" />
-<mvt:assign name="g.screenWidth" value="g.request_cookies:ress_width" />
-<mvt:if expr="l.settings:page:code EQ 'SFNT' OR l.settings:page:code EQ 'BASK' OR g.secure">
-	<link rel="canonical" href="http://&mvta:global:domain:name;/" />
-<mvt:elseif expr="l.settings:page:code EQ 'CTGY'">
-	<link rel="canonical" href="http://&mvta:global:domain:name;/&mvt:seo_settings:cat_lit;&mvt:seo_settings:url_delim;&mvta:category:code;.&mvt:seo_settings:suffix;" />
+<mvt:assign name="g.screenCheck" value="'ABAL,ACAD,ACED,AFAD,AFCL,AFED,ACLN,BASK,CEML,CPWD,FPWD,GFTL,INVC,LOGN,LOGOUT,OCST,OPAY,OPRC,ORHL,ORDH,ORDL,ORDS,OSEL,OUS1,OUSL,OUSM,PLMT,PRINTP,RGFT,SFNT,UATM,UATR,WLAD,WLED,WISH,WLGN,WLST,WPCK'" />
+<mvt:if expr="'CTGY' CIN l.settings:page:code">
+	<link rel="canonical" href="&mvte:category:link;" />
 <mvt:elseif expr="l.settings:page:code EQ 'PROD' OR l.settings:page:code EQ 'PATR'">
-	<mvt:assign name="g.socialURL" value="'http://' $ g.domain:name $ '/' $ l.settings:seo_settings:prod_lit $ l.settings:seo_settings:url_delim $ l.settings:product:code  $ '.' $ l.settings:seo_settings:suffix" />
-	<mvt:assign name="g.encodedProdName" value="encodeentities(l.settings:product:name)" />
-	<mvt:assign name="g.socialText" value="'Check out the deal on ' $ l.settings:product:name $ ' at ' $ g.store:name" />
-	<mvt:assign name="g.socialImage" value="'http://' $ g.domain:name $ g.domain:image_root $ l.settings:product:customfield_values:productimagecustomfields:main" />
-	<link rel="canonical" href="&mvt:global:socialURL;" />
-	<meta name="twitter:card" content="summary_large_image">
-	<meta name="twitter:site" content="@TWITTER_ACCOUNT">
-	<meta name="twitter:creator" content="@TWITTER_ACCOUNT">
-	<meta name="twitter:title" content="&mvt:global:encodedProdName;">
-	<meta name="twitter:description" content="&mvte:global:socialText;">
-	<meta name="twitter:image:src" content="&mvt:global:socialImage;">
-	<meta property="og:title" content="&mvt:global:encodedProdName;" />
-	<meta property="og:type" content="product" />
-	<meta property="og:image" content="&mvt:global:socialImage;" />
-	<meta property="og:url" content="&mvt:global:socialURL;" />
-	<meta property="og:site_name" content="&mvte:global:store:name;" />
-	<meta property="og:description" content="&mvte:global:socialText;" />
+	<link rel="canonical" href="&mvte:product:link;" />
 <mvt:else>
-	<link rel="canonical" href="http://&mvta:global:domain:name;/&mvta:page:code;.&mvt:seo_settings:suffix;" />
+	<link rel="canonical" href="&mvte:urls:_self:auto;" />
 </mvt:if>
-<mvt:if expr="NOT ISNULL l.settings:product:metafield:keywords">
-	<meta name="keywords" content="&mvt:product:metafield:keywords;" />
-<mvt:elseif expr="NOT ISNULL l.settings:category:metafield:keywords">
-	<meta name="keywords" content="&mvt:category:metafield:keywords;" />
-<mvt:else>
-	<meta name="keywords" content="SEO: META KEYWORDS" />
-</mvt:if>
-<mvt:if expr="NOT ISNULL l.settings:product:metafield:description">
-	<meta name="description" content="&mvt:product:metafield:description;" />
-<mvt:elseif expr="NOT ISNULL l.settings:category:metafield:description">
-	<meta name="description" content="&mvt:category:metafield:description;" />
-<mvt:else>
-	<meta name="description" content="SEO: META DESCRIPTION" />
-</mvt:if>
+<mvt:item name="prodctgy_meta" param="combined" />
 <link href="../css/css.php" rel="stylesheet" />
 <mvt:item name="head" param="css_list" />
 <mvt:item name="readytheme" param="css" />
 <link href="https://fonts.googleapis.com/css?family=Oswald|Source+Sans+Pro:400,600,400italic,700" rel="stylesheet" data-norem />
+<mvt:item name="clientdimensions"  file="cmp-mv-clientdimensions.htm" />
 <!--[if lt IE 9]>
 	<script src="../js/modernizr.js"></script>
 	<script src="../js/respond.min.js"></script>
 <![endif]-->
 <link href="../humans.txt" rel="author" />
-
+<script src="&mvt:global:clientside_url;Module_Code=mvga&amp;Filename=mvga.js"></script>
 <mvt:comment>
 	These link the font/css files in the Framework Export. 
 	<link href="../css/base.css" />
@@ -62,7 +29,6 @@
 	<link href="../css/colors.css" />
 	<link href="../css/fonts.css" />
 	<link href="../css/forms.css" />
-
 	<link href="../css/helpers.css" />
 	<link href="../css/magnific-popup.css" />
 	<link href="../css/normalize.css" />

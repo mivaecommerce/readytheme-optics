@@ -36,7 +36,7 @@
 		</div>
 		<!-- end product-information--description -->
 		<hr noshade />
-		<form method="post" action="&mvte:global:sessionurl;Screen=BASK" id="js-purchase-product" class="inline-labeling">
+		<form method="post" action="&mvte:urls:BASK:auto;" name="add" id="js-purchase-product" class="inline-labeling">
 			<input type="hidden" name="Old_Screen" value="&mvte:global:Screen;" />
 			<input type="hidden" name="Old_Search" value="&mvte:global:Search;" />
 			<input type="hidden" name="Action" value="ADPR" />
@@ -65,6 +65,14 @@
 						<div class="column one-fourth nrp"><span id="js-decrease-quantity" class="decrease-quantity" unselectable="on">-</span></div>
 						<div class="column three-eighths np"><input type="tel" name="Quantity" value="1" id="l-quantity" class="align-center" /></div>
 						<div class="column one-fourth nlp"><span id="js-increase-quantity" class="increase-quantity" unselectable="on">+</span></div>
+					</div>
+					<br />
+					<div class="row align-center">
+						<div class="column seven-eighths">
+							<span data-mmnodisable="true">
+								<span onclick="document.forms.add.action = '&mvtj:urls:WISH:secure;'; document.forms.add.elements.Action.value = 'ATWL';"><mvt:item name="buttons" param="AddToWishList"  file="cssui-buttonAddToWishList-item.htm" /></span>
+							</span>
+						</div>
 					</div>
 				</div>
 				<div class="column whole medium-three-fifths">

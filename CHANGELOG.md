@@ -1,3 +1,12 @@
+2015.08.22 - [v1.3.0](https://github.com/mivaecommerce/readytheme-optics/wiki/v1.3.0-Updates)
+---
+*	Updates and additions to support the new features released in Miva 9.4: http://www.miva.com/mm9.4_template_changes.html
+*	Added new pages to "screenCheck" variable in HEAD tag.
+*	Added support for forgot password on WLGN page in scripts.js.
+*	Updated mobile footer function in scripts.js for better iOS user experience.
+*	Miscellaneous clean-up to CSS and JS files.
+*	Upgraded css.php to output the concatenated and minified CSS files in a more user-friendly way.
+
 2015.04.15 - [v1.2.0](https://github.com/mivaecommerce/readytheme-optics/wiki/v1.2.0-Updates)
 ---
 *	Updates and additions to support the new features released in Miva 9.3: http://www.miva.com/mm9.3_template_changes.html http://extranet.miva.com/forums/showthread.php?115591-Miva-Merchant-9-0003-Is-Now-Available&p=430880#post430880
